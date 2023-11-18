@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segundo parcial</title>
+</head>
+<style>
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 2px solid #000000;
+        margin-bottom: 20px;
+        background-color: rgb(230, 247, 247);
+    }
+
+    table th
+    {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #000000;
+        background-color: rgb(195, 240, 240);
+    }
+    table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #000000;
+    }
+
+    button,
+    input[type="button"] {
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    select {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 20%;
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+        padding: 3px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 30%;
+        margin-bottom: 10px;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+
+    .formLista {
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    width: 1300px; 
+    height: 650px; 
+}
+    .formABM{
+        
+    border: 2px solid #000;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px;
+    width: 500px; 
+    height: 620px; 
+    display: none;
+    }
+    .spinner-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        display: none;
+    }
+
+    .spinner {
+        border: 6px solid #f3f3f3;
+        border-top: 6px solid #3498db;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+
+    body{
+      display: flex;
+      justify-content: space-around;
+    }
+</style>
+<script>
+    const url = "http://localhost/laboratorio/personasFutbolitasProfesionales.php";
+</script>
+<body>
+    <form id="formLista" class="formLista">
+        <h2>Formulario Lista</h2>
+        <table id="tablaPersonas">
+        </table>
+        <br>
+        <input type="button" id="agregar" onclick="verFormABM()" value="Agregar elemento">
+    </form>
+
+    <form id="formABM" style="display: none;" class="formABM">
+        <h2 id="hFormularioABM">Formulario ABM</h2>
+        <label for="id">Id: </label>
+        <input type="text" id="id" disabled>
+        <br>
+        <label for="nombre">Nombre: </label>
+        <input type="text" id="nombre">
+        <br>
+        <label for="apellido">Apellido: </label>
+        <input type="text" id="apellido">
+        <br>
+        <label for="edad">Edad: </label>
+        <input type="text" id="edad">
+        <br>
+        <label for="tipo" id="lbltipo">Tipo: </label>
+        <select id="tipo" onchange="mostrarCasillasABM()">
+            <option>Futbolista</option>
+            <option>Profesional</option>
+        </select>
+        <br id="br">
+        <label for="atributo1" id="lblatributo1">Equipo: </label>
+        <input type="text" id="atributo1">
+        <br>
+        <label for="atributo2" id="lblatributo2">Posicion: </label>
+        <input type="text" id="atributo2">
+        <br>
+        <label for="atributo3" id="lblatributo3">CantidadGoles: </label>
+        <input type="text" id="atributo3">
+        <br>
+        <input type="button" id="aceptar" onclick="agregarPersona()" value="Aceptar">
+        <input type="button" id="modificar" onclick="modificarPersona()" value="Aceptar" ,
+            style="display: none;">
+        <input type="button" id="eliminar" onclick="eliminarPersona()" value="Aceptar" ,
+            style="display: none;">
+        <input type="button" id="cancelar" onclick="verFormDatos()" value="Cancelar">
+
+    </form>
+    <form class="spinner-container" id="spinner">
+        <div class="spinner"></div>
+        </div>
+    </form>
+</body>
+<script src="Modelos.js"></script>
+<script src="FormLista.js"></script>
+<script src="FormABM.js"></script>
+
+</html>
